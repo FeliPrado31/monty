@@ -68,5 +68,7 @@ void _nop(stack_t **stack, unsigned int line_number);
 /* push.c */
 void _push(stack_t **head, unsigned int line_number);
 
+/* _pop.c */
+void _pop(stack_t **head, unsigned int line_number);
 
 #endif

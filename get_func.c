@@ -37,6 +37,7 @@ void (*get_func(char *code))(stack_t **stack, unsigned int line_number)
 	instruction_t ins[] = {
 		{"push", _push},
 		{"nop", _nop},
+		{"pop", _pop},
 		{NULL, NULL}};
 
 	len = getLen(code);
