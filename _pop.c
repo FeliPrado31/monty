@@ -6,6 +6,7 @@ void _pop(stack_t **head, unsigned int line_number)
 
     if (head == NULL || *head == NULL)
     {
+        printf("L%u: can't pop an empty stack", line_number);
         free(head);
         exit(EXIT_FAILURE);
     }
