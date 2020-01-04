@@ -1,6 +1,8 @@
 #ifndef _MONTY_
 #define _MONTY_
 
+extern int number;
+
 /* Includes */
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,13 +52,21 @@ typedef struct instruction_s
 /* parse_file.c */
 void open_file(char *file);
 char *read_file(char *file);
+void search_op(stack_t **stack, int lines, char *token);
+int isNumber(char *str);
 
-/* push.c */
-void _push(stack_t **head, unsigned int line_number);
 
 /* get_func.c */
 void (*get_func(char *code))(stack_t **stack, unsigned int line_number);
 int getLen(char *code);
 int _strncmp(char *s1, char *s2, int len);
+
+
+/* _nop.c */
+void _nop(stack_t **stack, unsigned int line_number);
+
+/* push.c */
+void _push(stack_t **head, unsigned int line_number);
+
 
 #endif
