@@ -42,7 +42,6 @@ void readFile(char *file)
 		parseFile(b.stream, &stack, i);
 
 	}
-	fclose(b.f);
 	free_all(stack);
 	exit(EXIT_SUCCESS);
 }
