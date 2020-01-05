@@ -12,6 +12,9 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 	instruction_t op[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pop", _pop},
+		{"add", _add},
+		{"nop", _nop},
 		{NULL, NULL}
 	};
 

@@ -69,6 +69,12 @@ void _push(stack_t **head, unsigned int count);
 /* _pall.c */
 void _pall(stack_t **h, unsigned int count);
 
-/* _ */
+/* _pop.c */
+void _pop(stack_t **head, unsigned int line);
 
+/* _add.c */
+void _add(stack_t **stack, unsigned int line);
+
+/* _nop.c */
+void _nop(stack_t **stack, unsigned int line);
 #endif
