@@ -45,20 +45,26 @@ void open_file(char *file)
 /**
  * 
  */
-int isNumber(char *str)
+int isNumber(char *code)
 {
 	int i = 0, isSpace = 0;
 
-	if (str[i] == ' ')
+	if (code[i] == ' ')
 		i++;
-	for (; str[i] != '\0'; i++)
+	while (code[i] == '\0')
 	{
-		if (str[i] == ' ')
-			i++;
-		else
+		if (code[i] == ' ')
+		{
+			if ((code[i] < '0' || code[i] > '9') && code[i] != '-')
+				return (-1);
 			isSpace = 1;
-		if (isdigit(str[i] == 0))
-			return (-1);
+		}
+		else
+		{
+			if (isSpace == 1)
+				return (0);
+		}
+		i++;
 	}
 	if (isSpace == 0)
 		return (-1);
@@ -79,7 +85,7 @@ void search_op(stack_t **stack, int lines, char *token)
 	if (token[0] == '#')
 		return;
 	/* check if the func is push */
-	if (strncmp(token, "push", 4))
+	if (strncmp(token, "push ", 5))
 	{
 		/* check if start with a letter */
 		while (isalpha(*token))
