@@ -41,7 +41,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct str - str
+ * struct global_buff - str
  * @key: char key
  * @stream: char stream
  * @f: FILE f

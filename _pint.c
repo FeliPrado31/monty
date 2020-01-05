@@ -1,17 +1,16 @@
 #include "monty.h"
 /**
- * exe_pint - Print the value at the top of the stack
+ * _pint - Print the value at the top of the stack
  * @stack: pointer to stack
- * @ln: line number
- * Return: Nothing, just print the top value
+ * @line: line number
  */
-void exe_pint(stack_t **stack, unsigned int ln)
+void _pint(stack_t **stack, unsigned int line)
 {
 	stack_t *node = *stack;
 
 	if (!node)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty", ln);
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty", line);
 		exit(EXIT_FAILURE);
 	}
 	else

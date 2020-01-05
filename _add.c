@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * exe_add - Add the top two elements
+ * _add - Add the top two elements
  * @stack: pointer to stack
  * @line: line number
  * Return: Nothing, just add
