@@ -1,18 +1,15 @@
-#ifndef _MONTY_
-#define _MONTY_
-
-extern int number;
-
+#ifndef MONTY_FILE
+#define MONTY_FILE
 /* Includes */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <stdio.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <string.h>
-#include <ctype.h>
-
-/* Structures */
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -23,14 +20,12 @@ extern int number;
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
-
 typedef struct stack_s
 {
-    int n;
-    struct stack_s *prev;
-    struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
-
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -39,36 +34,41 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO Holberton project
  */
-
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* main.c */
+/**
+ * struct str - str
+ * @key: char key
+ * @stream: char stream
+ * @f: FILE f
+ */
+typedef struct global_buff
+{
+	char *key;
+	char *stream;
+	FILE *f;
+} gBuff;
 
+extern gBuff b;
 
-/* parse_file.c */
-void open_file(char *file);
-char *read_file(char *file);
-void search_op(stack_t **stack, int lines, char *token);
-int isNumber(char *str);
+/* parsingFile.c */
+void readFile(char *file);
+void parseFile(char *code, stack_t **stack, unsigned int line);
 
+/* getOp.c */
+void free_all(stack_t *stack);
+void getOp(stack_t **stack, unsigned int counter, char *code);
 
-/* get_func.c */
-void (*get_func(char *code))(stack_t **stack, unsigned int line_number);
-int getLen(char *code);
-int _strncmp(char *s1, char *s2, int len);
+/* _push.c */
+void _push(stack_t **head, unsigned int count);
 
+/* _pall.c */
+void _pall(stack_t **h, unsigned int count);
 
-/* _nop.c */
-void _nop(stack_t **stack, unsigned int line_number);
-
-/* push.c */
-void _push(stack_t **head, unsigned int line_number);
-
-/* _pop.c */
-void _pop(stack_t **head, unsigned int line_number);
+/* _ */
 
 #endif

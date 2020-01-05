@@ -1,18 +1,22 @@
 #include "monty.h"
-
-void _pop(stack_t **head, unsigned int line_number)
+/**
+ * _pop - Funtionces of the opcode pop.
+ * @head: Stack.
+ * @line: line of the line where the opcode is taken.
+ */
+void _pop(stack_t **head, unsigned int line)
 {
-    stack_t *tmp = *head;
+	stack_t *tmp = *head;
 
-    if (head == NULL || *head == NULL)
-    {
-        printf("L%u: can't pop an empty stack", line_number);
-        free(head);
-        exit(EXIT_FAILURE);
-    }
+	if (head == NULL || *head == NULL)
+	{
+		printf("L%u: can't pop an empty stack", line);
+		free(head);
+		exit(EXIT_FAILURE);
+	}
 
-    *head = tmp->next;
-    if (*head != NULL)
-        (*head)->prev = NULL;
-    free(tmp);
+	*head = tmp->next;
+	if (*head != NULL)
+		(*head)->prev = NULL;
+	free(tmp);
 }
