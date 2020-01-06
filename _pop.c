@@ -3,12 +3,11 @@
 /**
  * execute_pop - remove the first elemnt of the stack
  * @stack: The stack
- * @n: The current file line number
- * Return: Nothing or EXIT_FAILURE
+ * @line: The current file line number
  */
 void _pop(stack_t **stack, unsigned int line)
 {
-	stack_t *aux;
+	stack_t *tmp;
 
 	if (!*stack)
 	{
@@ -16,8 +15,8 @@ void _pop(stack_t **stack, unsigned int line)
 		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
-	aux = *stack;
-	aux = aux->next;
+	tmp = *stack;
+	tmp = tmp->next;
 	free(*stack);
-	*stack = aux;
+	*stack = tmp;
 }

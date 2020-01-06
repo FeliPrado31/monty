@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -84,4 +85,8 @@ void _swap(stack_t **stack, unsigned int line);
 
 /* _nop.c */
 void _nop(stack_t **stack, unsigned int line);
+
+/* printFunc.c */
+void _rotl(stack_t **stack, unsigned int line);
+
 #endif

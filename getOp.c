@@ -13,19 +13,20 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 		{"push", _push},
 		{"pall", _pall},
 		{"pop", _pop},
+		{"nop", _nop},
 		/*{"pint", _pint},*/
 		{"swap", _swap},
 		{"add", _add},
-		{"nop", _nop},
 		{"sub", _sub},
 		{"div", _div},
+		{"mod", _mod},
+		{"mul", _mul},
+		{"rotl", _rotl},
 		{NULL, NULL}
 	};
 
 	while (op[i].opcode)
 	{
-		if (strcmp(op[i].opcode, "nop") == 0)
-			break;
 		if ((strcmp(op[i].opcode, code)) == 0)
 		{
 			op[i].f(stack, counter);
