@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * swap -The opcode swap swaps the top two elements of the stack.
+ * _swap -The opcode swap swaps the top two elements of the stack.
  * @stack: this is the head.
  * @line: constant int value
  * Return: is a void
  **/
-void swap(stack_t **stack, unsigned int line)
+void _swap(stack_t **stack, unsigned int line)
 {
 	int num;
 
