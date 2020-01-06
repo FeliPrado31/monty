@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * pop -  The opcode pop removes the top element of the stack.
+ * _pop -  The opcode pop removes the top element of the stack.
  * @stack: stack of the list
  * @line: the list
  *
