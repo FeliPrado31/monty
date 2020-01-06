@@ -10,25 +10,50 @@ void _push(stack_t **stack, unsigned int line)
 	stack_t *node;
 	(void)line;
 	node = malloc(sizeof(stack_t));
-	if (node == NULL)
+	/*if (node == NULL)
 	{
 		printf("Error: malloc failed\n");
 		free_all(*(stack));
 		free(stack);
 		exit(EXIT_FAILURE);
+	}*/
+
+	if (node == NULL)
+	{
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		free_all(node);
+		exit(EXIT_FAILURE);
 	}
 
-	if (b.key[0] == '-')
-		node->n = atoi(b.key) * -1;
-	else
-		node->n = atoi(b.key);
-	node->prev = NULL;
-	if (*stack != NULL)
+	if (!b.key && b.key != 0)
 	{
-		(*stack)->prev = node;
-		node->next = *stack;
+		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line);
+		free_all((*stack));
+		free(node);
+		exit(EXIT_FAILURE);
+	}
+
+	if (b.key)
+	{
+		if (b.key[0] == '-')
+			node->n = atoi(b.key) * -1;
+		else
+			node->n = atoi(b.key);
+		node->prev = NULL;
+		if (*stack != NULL)
+		{
+			(*stack)->prev = node;
+			node->next = *stack;
+		}
+		else
+			node->next = NULL;
+		*stack = node;
 	}
 	else
-		node->next = NULL;
-	*stack = node;
+	{
+		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line);
+		free_all((*stack));
+		free(node);
+		exit(EXIT_FAILURE);
+	}
 }
