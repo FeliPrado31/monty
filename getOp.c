@@ -14,6 +14,7 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 		{"pop", _pop},
 		{"pall", _pall},
 		{"add", _add},
+		{"sub", _sub},
 		{NULL, NULL}
 	};
 
@@ -31,6 +32,7 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 	if (op[i].f == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", counter, code);
+		free_all(*(stack));
 		exit(EXIT_FAILURE);
 	}
 
