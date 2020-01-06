@@ -1,22 +1,25 @@
 #include "monty.h"
 /**
- * _pop - Funtionces of the opcode pop.
- * @head: Stack.
- * @line: line of the line where the opcode is taken.
+ * pop -  The opcode pop removes the top element of the stack.
+ * @stack: stack of the list
+ * @line: the list
+ *
+ * Return: nothing
  */
-void _pop(stack_t **head, unsigned int line)
+void pop(stack_t **stack, unsigned int line)
 {
-	stack_t *tmp = *head;
+	stack_t *tmp;
 
-	if (head == NULL || *head == NULL)
+	if (!*stack)
 	{
-		printf("L%u: can't pop an empty stack", line);
-		free(head);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
+		free_s(*stack);
 		exit(EXIT_FAILURE);
 	}
 
-	*head = tmp->next;
-	if (*head != NULL)
-		(*head)->prev = NULL;
-	free(tmp);
+	tmp = (*stack)->next;
+	free(*stack);
+	*stack = tmp;
+	if (*stack != NULL)
+		tmp->prev = NULL;
 }
