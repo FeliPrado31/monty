@@ -57,20 +57,19 @@ void _sub(stack_t **stack, unsigned int line)
 
 void _mul(stack_t **stack, unsigned int line)
 {
-	int mul;
+	stack_t *temp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		printf("L%u: can't mul, stack too short\n", line);
-		free_all(*(stack));
-		free(stack);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
 
-	mul = ((*stack)->next)->n * (*stack)->n;
-
-	_pop(stack, line);
-	(*stack)->n = mul;
+	temp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n *= temp->n;
+	(*stack)->prev = NULL;
+	free(temp);
 }
 
 /**
@@ -82,7 +81,7 @@ void _mul(stack_t **stack, unsigned int line)
 
 void _div(stack_t **stack, unsigned int line)
 {
-	stack_t *tmp;
+	stack_t *temp;
 
 	if (!stack || !*stack || !((*stack)->next))
 	{
@@ -96,11 +95,11 @@ void _div(stack_t **stack, unsigned int line)
 		exit(EXIT_FAILURE);
 	}	
 
-	tmp = *stack;
+	temp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->n /= tmp->n;
+	(*stack)->n /= temp->n;
 	(*stack)->prev = NULL;
-	free(tmp);
+	free(temp);
 }
 /**
  * _mod - finds the remainder when the top element in the stack is divided by
