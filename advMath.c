@@ -7,22 +7,21 @@
  * @line: line number
  */
 
-void _add(stack_t **stack, unsigned int line)
+void add(stack_t **stack, unsigned int line)
 {
-	int sum;
+	stack_t *tmp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		printf("L%u: can't add, stack too short\n", line);
-		free_all(*(stack));
-		free(stack);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
 
-	sum = ((*stack)->next)->n + (*stack)->n;
-
-	_pop(stack, line);
-	(*stack)->n = sum;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n += tmp->n;
+	(*stack)->prev = NULL;
+	free(tmp);
 }
 
 /**
