@@ -57,7 +57,7 @@ void _sub(stack_t **stack, unsigned int line)
 
 void _mul(stack_t **stack, unsigned int line)
 {
-	stack_t *temp;
+	stack_t *tmp;
 
 	if (!stack || !*stack || !((*stack)->next))
 	{
@@ -65,11 +65,11 @@ void _mul(stack_t **stack, unsigned int line)
 		exit(EXIT_FAILURE);
 	}
 
-	temp = *stack;
+	tmp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->n *= temp->n;
+	(*stack)->n *= tmp->n;
 	(*stack)->prev = NULL;
-	free(temp);
+	free(tmp);
 }
 
 /**
@@ -81,7 +81,7 @@ void _mul(stack_t **stack, unsigned int line)
 
 void _div(stack_t **stack, unsigned int line)
 {
-	stack_t *temp;
+	stack_t *tmp;
 
 	if (!stack || !*stack || !((*stack)->next))
 	{
@@ -95,11 +95,11 @@ void _div(stack_t **stack, unsigned int line)
 		exit(EXIT_FAILURE);
 	}	
 
-	temp = *stack;
+	tmp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->n /= temp->n;
+	(*stack)->n /= tmp->n;
 	(*stack)->prev = NULL;
-	free(temp);
+	free(tmp);
 }
 /**
  * _mod - finds the remainder when the top element in the stack is divided by
@@ -110,25 +110,23 @@ void _div(stack_t **stack, unsigned int line)
 
 void _mod(stack_t **stack, unsigned int line)
 {
-	int mod;
+	stack_t *tmp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		printf("L%u: can't mod, stack too short\n", line);
-		free_all(*(stack));
-		free(stack);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
+
 	if ((*stack)->n == 0)
 	{
-		printf("L%u: division by zero\n", line);
-		free_all(*(stack));
-		free(stack);
+		dprintf(STDERR_FILENO, "L%d: division by zero\n", line);
 		exit(EXIT_FAILURE);
-	}
+	}	
 
-	mod = ((*stack)->next)->n % (*stack)->n;
-
-	(*stack)->next->n = mod;
-	_pop(stack, line);
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n %= tmp->n;
+	(*stack)->prev = NULL;
+	free(tmp);
 }
