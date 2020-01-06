@@ -64,7 +64,7 @@ void free_all(stack_t *stack);
 void getOp(stack_t **stack, unsigned int counter, char *code);
 
 /* _push.c */
-void _push(stack_t **head, unsigned int count);
+void _push(stack_t **stack, unsigned int line);
 
 /* _pall.c */
 void _pall(stack_t **h, unsigned int count);

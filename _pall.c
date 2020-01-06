@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "monty.h"
 /**
  *  _pall - function that prints all the elements of a dlist
