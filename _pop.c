@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * execute_pop - remove the first elemnt of the stack
+ * _pop - remove the first elemnt of the stack
  * @stack: The stack
  * @line: The current file line number
  */

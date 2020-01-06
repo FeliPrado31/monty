@@ -59,6 +59,7 @@ extern gBuff b;
 /* parsingFile.c */
 void readFile(char *file);
 void parseFile(char *code, stack_t **stack, unsigned int line);
+int checkFile(char *file);
 
 /* getOp.c */
 void free_all(stack_t *stack);

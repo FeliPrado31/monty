@@ -93,7 +93,7 @@ void _div(stack_t **stack, unsigned int line)
 	{
 		dprintf(STDERR_FILENO, "L%d: division by zero\n", line);
 		exit(EXIT_FAILURE);
-	}	
+	}
 
 	tmp = *stack;
 	*stack = (*stack)->next;
@@ -122,7 +122,7 @@ void _mod(stack_t **stack, unsigned int line)
 	{
 		dprintf(STDERR_FILENO, "L%d: division by zero\n", line);
 		exit(EXIT_FAILURE);
-	}	
+	}
 
 	tmp = *stack;
 	*stack = (*stack)->next;
