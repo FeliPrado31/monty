@@ -1,25 +1,23 @@
 #include "monty.h"
+
 /**
- * _pop -  The opcode pop removes the top element of the stack.
- * @stack: stack of the list
- * @line: the list
- *
- * Return: nothing
+ * execute_pop - remove the first elemnt of the stack
+ * @stack: The stack
+ * @n: The current file line number
+ * Return: Nothing or EXIT_FAILURE
  */
 void _pop(stack_t **stack, unsigned int line)
 {
-	stack_t *tmp;
+	stack_t *aux;
 
 	if (!*stack)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
-		free_all(*(stack));
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line);
+		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
-
-	tmp = (*stack)->next;
+	aux = *stack;
+	aux = aux->next;
 	free(*stack);
-	*stack = tmp;
-	if (*stack != NULL)
-		tmp->prev = NULL;
+	*stack = aux;
 }
