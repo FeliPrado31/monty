@@ -14,7 +14,7 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 		{"pall", _pall},
 		{"pop", _pop},
 		{"nop", _nop},
-		/*{"pint", _pint},*/
+		{"pint", _pint},
 		{"swap", _swap},
 		{"add", _add},
 		{"sub", _sub},

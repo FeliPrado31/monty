@@ -64,6 +64,9 @@ void parseFile(char *code, stack_t **stack, unsigned int line);
 void free_all(stack_t *stack);
 void getOp(stack_t **stack, unsigned int counter, char *code);
 
+/* _pint.c */
+void _pint(stack_t **stack, unsigned int line);
+
 /* _push.c */
 void _push(stack_t **stack, unsigned int line);
 
