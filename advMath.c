@@ -7,7 +7,7 @@
  * @line: line number
  */
 
-void add(stack_t **stack, unsigned int line)
+void _add(stack_t **stack, unsigned int line)
 {
 	stack_t *tmp;
 
