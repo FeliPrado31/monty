@@ -9,17 +9,19 @@ void getOp(stack_t **stack, unsigned int counter, char *code)
 {
 	int i = 0;
 
-	instruction_t op[] = {
+	instruction_t op[] = {		
 		{"push", _push},
-		{"pall", _pall},
 		{"pop", _pop},
-		{"add", _add},
 		{"nop", _nop},
+		{"pall", _pall},
+		{"add", _add},
 		{NULL, NULL}
 	};
 
 	while (op[i].opcode)
 	{
+		if (strcmp(op[i].opcode, "nop") == 0)
+			break;
 		if ((strcmp(op[i].opcode, code)) == 0)
 		{
 			op[i].f(stack, counter);
