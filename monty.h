@@ -70,7 +70,7 @@ void _push(stack_t **stack, unsigned int line);
 void _pall(stack_t **h, unsigned int count);
 
 /* _pop.c */
-void _pop(stack_t **head, unsigned int line);
+void _pop(stack_t **stack, unsigned int line);
 
 /* _add.c */
 void _add(stack_t **stack, unsigned int line);

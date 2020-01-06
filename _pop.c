@@ -6,14 +6,14 @@
  *
  * Return: nothing
  */
-void pop(stack_t **stack, unsigned int line)
+void _pop(stack_t **stack, unsigned int line)
 {
 	stack_t *tmp;
 
 	if (!*stack)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
-		free_s(*stack);
+		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
 
