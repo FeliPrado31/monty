@@ -33,20 +33,19 @@ void _add(stack_t **stack, unsigned int line)
 
 void _sub(stack_t **stack, unsigned int line)
 {
-	int sub;
+	stack_t *tmp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		printf("L%u: can't sub, stack too short\n", line);
-		free_all(*(stack));
-		free(stack);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
 
-	sub = ((*stack)->next)->n - (*stack)->n;
-
-	_pop(stack, line);
-	(*stack)->n = sub;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n -= tmp->n;
+	(*stack)->prev = NULL;
+	free(tmp);
 }
 
 /**
@@ -83,27 +82,25 @@ void _mul(stack_t **stack, unsigned int line)
 
 void _div(stack_t **stack, unsigned int line)
 {
-	int div;
+	stack_t *tmp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		printf("L%u: can't div, stack too short\n", line);
-		free_all(*(stack));
-		free(stack);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
+
 	if ((*stack)->n == 0)
 	{
-		printf("L%u: division by zero\n", line);
-		free_all(*(stack));
-		free(stack);
+		dprintf(STDERR_FILENO, "L%d: division by zero\n", line);
 		exit(EXIT_FAILURE);
-	}
+	}	
 
-	div = (*stack)->next->n / (*stack)->n;
-
-	_pop(stack, line);
-	(*stack)->n = div;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n /= tmp->n;
+	(*stack)->prev = NULL;
+	free(tmp);
 }
 /**
  * _mod - finds the remainder when the top element in the stack is divided by
